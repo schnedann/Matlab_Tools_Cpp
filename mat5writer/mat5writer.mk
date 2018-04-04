@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=
-Date                   :=04.04.2018
+Date                   :=05.04.2018
 CodeLitePath           :=/home/danny/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix) 
 
 
 
@@ -91,14 +91,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix): mat5writer.cpp $(IntermediateDirectory)/mat5writer.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/danny/ramdisk/matlab/mat5writer/mat5writer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/mat5writer.cpp$(DependSuffix): mat5writer.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/mat5writer.cpp$(DependSuffix) -MM mat5writer.cpp
-
-$(IntermediateDirectory)/mat5writer.cpp$(PreprocessSuffix): mat5writer.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/mat5writer.cpp$(PreprocessSuffix) mat5writer.cpp
-
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/danny/ramdisk/matlab/mat5writer/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
@@ -106,6 +98,14 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
+
+$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix): mat5writer.cpp $(IntermediateDirectory)/mat5writer.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/danny/ramdisk/matlab/mat5writer/mat5writer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/mat5writer.cpp$(DependSuffix): mat5writer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/mat5writer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/mat5writer.cpp$(DependSuffix) -MM mat5writer.cpp
+
+$(IntermediateDirectory)/mat5writer.cpp$(PreprocessSuffix): mat5writer.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/mat5writer.cpp$(PreprocessSuffix) mat5writer.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

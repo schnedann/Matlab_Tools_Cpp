@@ -1,1 +1,1 @@
-./Debug/mat5writer.cpp.o ./Debug/main.cpp.o
+./Debug/main.cpp.o ./Debug/mat5writer.cpp.o

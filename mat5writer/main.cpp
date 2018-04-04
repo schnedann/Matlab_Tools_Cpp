@@ -14,6 +14,8 @@ int main(int argc, char **argv)
     {
         ofstream ofs(filename, std::ios::out);
         ofs << Matlab_Util::mat5writer::get_header();
+        ofs << Matlab_Util::mat5writer::add(127);
+        //ofs << Matlab_Util::mat5writer::DataElement(Matlab_Util::DataTypes::miMATRIX,filename) << "\n";
         ofs.close();
     }
 
