@@ -92,6 +92,17 @@ string Matlab_Util::mat5writer::shortDataElement(Matlab_Util::DataTypes const& d
   return ss.str();
 }
 
+template<typename T, Matlab_Util::DataTypes dT> string genericadd(T const& _x){
+  Matlab_Util::DataTypes dt = dT;
+  u32 bytes = Matlab_Util::DataTypeSizes[static_cast<s32>(dt)];
+  string data(4,'\0');
+
+  for(u32 ii=0; ii<bytes; ++ii){
+    data[ii] = (reinterpret_cast<char const *>(&_x))[ii];
+  }
+  return Matlab_Util::mat5writer::DataElement(dt,data);
+}
+
 string Matlab_Util::mat5writer::add(u8 const& _x){
   DataTypes dt = DataTypes::miUINT8;
   u32 bytes = DataTypeSizes[static_cast<s32>(dt)];
@@ -101,4 +112,8 @@ string Matlab_Util::mat5writer::add(u8 const& _x){
     data[ii] = (reinterpret_cast<char const *>(&_x))[ii];
   }
   return DataElement(dt,data);
+}
+
+string Matlab_Util::mat5writer::add(u16 const& _x){
+  return genericadd<u16,Matlab_Util::DataTypes::miUINT16>(_x);
 }

@@ -46,7 +46,7 @@ public:
   static std::string shortDataElement(Matlab_Util::DataTypes const& datatype, std::string const& data);
 
   static std::string add(u8 const& _x);
-
+  static std::string add(u16 const& _x);
 };
 
 }
