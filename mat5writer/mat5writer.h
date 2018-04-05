@@ -47,6 +47,13 @@ public:
 
   static std::string add(u8 const& _x);
   static std::string add(u16 const& _x);
+  static std::string add(u32 const& _x);
+  static std::string add(u64 const& _x);
+
+  static std::string add(s8 const& _x);
+  static std::string add(s16 const& _x);
+  static std::string add(s32 const& _x);
+  static std::string add(s64 const& _x);
 };
 
 }

@@ -95,7 +95,8 @@ string Matlab_Util::mat5writer::shortDataElement(Matlab_Util::DataTypes const& d
 template<typename T, Matlab_Util::DataTypes dT> string genericadd(T const& _x){
   Matlab_Util::DataTypes dt = dT;
   u32 bytes = Matlab_Util::DataTypeSizes[static_cast<s32>(dt)];
-  string data(4,'\0');
+  bytes = (bytes>4)?(bytes):(4);
+  string data(bytes,'\0');
 
   for(u32 ii=0; ii<bytes; ++ii){
     data[ii] = (reinterpret_cast<char const *>(&_x))[ii];
@@ -104,16 +105,27 @@ template<typename T, Matlab_Util::DataTypes dT> string genericadd(T const& _x){
 }
 
 string Matlab_Util::mat5writer::add(u8 const& _x){
-  DataTypes dt = DataTypes::miUINT8;
-  u32 bytes = DataTypeSizes[static_cast<s32>(dt)];
-  string data(4,'\0');
-
-  for(u32 ii=0; ii<bytes; ++ii){
-    data[ii] = (reinterpret_cast<char const *>(&_x))[ii];
-  }
-  return DataElement(dt,data);
+  return genericadd<u8,Matlab_Util::DataTypes::miUINT8>(_x);
 }
-
 string Matlab_Util::mat5writer::add(u16 const& _x){
   return genericadd<u16,Matlab_Util::DataTypes::miUINT16>(_x);
+}
+string Matlab_Util::mat5writer::add(u32 const& _x){
+  return genericadd<u32,Matlab_Util::DataTypes::miUINT32>(_x);
+}
+string Matlab_Util::mat5writer::add(u64 const& _x){
+  return genericadd<u64,Matlab_Util::DataTypes::miUINT64>(_x);
+}
+
+string Matlab_Util::mat5writer::add(s8 const& _x){
+  return genericadd<s8,Matlab_Util::DataTypes::miINT8>(_x);
+}
+string Matlab_Util::mat5writer::add(s16 const& _x){
+  return genericadd<s16,Matlab_Util::DataTypes::miINT16>(_x);
+}
+string Matlab_Util::mat5writer::add(s32 const& _x){
+  return genericadd<s32,Matlab_Util::DataTypes::miINT32>(_x);
+}
+string Matlab_Util::mat5writer::add(s64 const& _x){
+  return genericadd<s64,Matlab_Util::DataTypes::miINT64>(_x);
 }
