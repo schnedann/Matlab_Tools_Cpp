@@ -50,7 +50,6 @@ string Matlab_Util::mat5writer::DataElement(Matlab_Util::DataTypes const& dataty
   if((0<dts) && (4>=dts)){
     ss << shortDataElement(datatype,data);
   }else{
-    stringstream ss;
     string header(8-1,'\0');
 
     {
